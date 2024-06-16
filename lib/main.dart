@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:video_app/provider/Progress_Provider.dart';
 import 'package:video_app/provider/like_provider.dart';
-import 'package:video_app/provider/mute_provider.dart';
+
 import 'package:video_app/provider/share_provider.dart';
-import 'package:video_app/provider/video_provider.dart';
+
 
 import 'homescreen.dart';
 
@@ -12,9 +12,7 @@ void main() {
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(
-          create: (context) => VideoProvider(),
-        ),
+
         ChangeNotifierProvider(
           create: (context) => LikeProvider(),
         ),
@@ -24,9 +22,7 @@ void main() {
         ChangeNotifierProvider(
           create: (context) => ProgressProvider(),
         ),
-        ChangeNotifierProvider(
-          create: (context) => MuteProvider(),
-        ),
+
       ],
       child: MyApp(),
     ),
