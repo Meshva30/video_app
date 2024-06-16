@@ -19,7 +19,11 @@ class HomePage extends StatelessWidget {
                     height: MediaQuery.of(context).size.height,
                     width: MediaQuery.of(context).size.width,
                     child: ContentScreen(
-                      src: videos[index],
+                      video: videos[index]['video'],
+                      like: videos[index]['like'],
+                      comment: videos[index]['comment'],
+                      share: videos[index]['share'],
+                      username: videos[index]['username'],
                     ),
                   );
                 },

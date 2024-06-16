@@ -1,8 +1,24 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:video_app/provider/Progress_Provider.dart';
+import 'package:video_app/provider/like_provider.dart';
+import 'package:video_app/provider/share_provider.dart';
 
 class OptionsScreen extends StatelessWidget {
-  const OptionsScreen({super.key});
+  const OptionsScreen(
+      {super.key,
+      required this.video,
+      required this.username,
+      required this.comment,
+      required this.like,
+      required this.share});
+
+  final String video;
+  final String username;
+  final int comment;
+  final int like;
+  final String share;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +33,7 @@ class OptionsScreen extends StatelessWidget {
               Column(
                 children: [
                   SizedBox(
-                    height:560,
+                    height: 560,
                   ),
                   Row(
                     children: [
@@ -32,11 +48,15 @@ class OptionsScreen extends StatelessWidget {
                       SizedBox(
                         width: 6,
                       ),
-                      Text("Meshva_patel30"),
+                      Text(username),
                       SizedBox(
                         width: 10,
                       ),
-                      Icon(Icons.verified, size: 15,color: Colors.blue,),
+                      Icon(
+                        Icons.verified,
+                        size: 15,
+                        color: Colors.blue,
+                      ),
                       SizedBox(width: 6),
                       TextButton(
                         onPressed: () {},
@@ -70,31 +90,48 @@ class OptionsScreen extends StatelessWidget {
                   SizedBox(
                     height: 350,
                   ),
-                  Icon(
-                    Icons.favorite_border,
-                    size: 30,
+                  Consumer<LikeProvider>(
+                    builder: (context, likeProvider, child) {
+                      return GestureDetector(
+                        onTap: () {
+                          likeProvider.toggleLike();
+                        },
+                        child: Icon(
+                          likeProvider.isLiked
+                              ? Icons.favorite
+                              : Icons.favorite_border,
+                          size: 30,
+                          color: likeProvider.isLiked ? Colors.red : null,
+                        ),
+                      );
+                    },
                   ),
                   Text(
-                    '101K',
+                    '$like',
                   ),
                   SizedBox(
                     height: 20,
                   ),
                   Icon(Icons.comment_rounded, size: 30),
-                  Text('1123'),
+                  Text('$comment'),
                   SizedBox(
                     height: 20,
                   ),
                   Transform(
                     transform: Matrix4.rotationZ(5.8),
-                    child: Icon(
-                      Icons.send,
-                      size: 30,
+                    child: IconButton(
+                      icon: Icon(
+                        Icons.send,
+                        size: 30,
+                        color: Colors.white,
+                      ),
+                      onPressed: () {
+                        Provider.of<ShareProvider>(context, listen: false)
+                            .shareReel(video);
+                      },
                     ),
                   ),
-                  Text(
-                    '101K',
-                  ),
+                  Text(share),
                   SizedBox(
                     height: 20,
                   ),
@@ -111,15 +148,24 @@ class OptionsScreen extends StatelessWidget {
                     decoration: BoxDecoration(
                         border: Border.all(color: Colors.white, width: 2),
                         borderRadius: BorderRadius.circular(5),
-                       image: DecorationImage(image: AssetImage('assets/img/dil.jpg'))
-                    ),
+                        image: DecorationImage(
+                            image: AssetImage('assets/img/dil.jpg'))),
                   )
                 ],
               ),
             ],
+          ),
+          SizedBox(height: 10,),
+          LinearProgressIndicator(
+            minHeight: 2,
+            value: Provider.of<ProgressProvider>(context).videoProgress,
+            backgroundColor: Colors.grey,
+            valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
           ),
         ],
       ),
     );
   }
 }
+
+bool isLiked = false;
