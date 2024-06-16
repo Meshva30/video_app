@@ -1,4 +1,4 @@
-# Instagram Shorts App
+# Instagram Reels App
 
 Welcome to the Shorts Scrolling App! This Flutter application allows users to scroll through short video reels, similar to Instagram Reels. The app features a play/pause button in the bottom navigation bar, as well as on-screen mute/unmute options for each reel.
 
@@ -33,10 +33,13 @@ Welcome to the Shorts Scrolling App! This Flutter application allows users to sc
   <p>
     <table align="center">
   <tr>
-    <video src ="https://github.com/Meshva30/video_app/assets/136339359/96b723fc-eaae-49bc-a907-5c537416a6e6"></video> </h1>
+    <video src ="https://github.com/Meshva30/video_app/assets/136339359/1f5d85c3-9458-43d9-9e1b-2bd07e3788a0"></video> </h1>
   </tr>
     </table>   
   </p>
+
+
+
 
 
 ## Built With
