@@ -107,13 +107,5 @@ Contributions are welcome! Please follow these steps:
     ```bash
     git push origin feature-name
     ```
-5. Open a pull request.
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## Contact
-
-If you have any questions or feedback, please feel free to contact us at aayushpatel01411@gmail.com.
 
